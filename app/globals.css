@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 38 33% 98%;
+    --foreground: 24 18% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 18% 13%;
+    --primary: 9 82% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 151 26% 90%;
+    --secondary-foreground: 161 34% 18%;
+    --muted: 35 28% 92%;
+    --muted-foreground: 24 10% 42%;
+    --accent: 204 46% 88%;
+    --accent-foreground: 204 35% 20%;
+    --border: 30 18% 84%;
+    --input: 30 18% 84%;
+    --ring: 9 82% 62%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 24 16% 9%;
+    --foreground: 35 28% 92%;
+    --card: 24 15% 13%;
+    --card-foreground: 35 28% 92%;
+    --primary: 9 72% 66%;
+    --primary-foreground: 24 18% 10%;
+    --secondary: 158 24% 20%;
+    --secondary-foreground: 151 25% 88%;
+    --muted: 24 13% 18%;
+    --muted-foreground: 32 12% 67%;
+    --accent: 204 34% 22%;
+    --accent-foreground: 204 40% 88%;
+    --border: 24 12% 24%;
+    --input: 24 12% 24%;
+    --ring: 9 72% 66%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .soft-band {
+    background:
+      radial-gradient(circle at 15% 10%, rgba(236, 125, 93, 0.16), transparent 28%),
+      radial-gradient(circle at 85% 12%, rgba(99, 171, 139, 0.14), transparent 24%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+  }
+
+  .glass-line {
+    @apply border border-white/50 bg-white/70 shadow-soft backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
+  }
+}
