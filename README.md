@@ -21,6 +21,7 @@ app/
   layout.tsx
   page.tsx
 components/
+  adoption/
   animals/
   dashboard/
   layout/
@@ -46,7 +47,13 @@ supabase/
 - Medical and sterilization record upload flow.
 - Rescue workflow board from report to adoption.
 - Supabase Auth login/register screen.
+- Interactive adoption search/filtering, map point focus, and workflow stage focus.
+- Figma design file for tokens, desktop screens, mobile screens, and reusable product components.
 - Responsive Apple-like interface with warm community styling and dark mode.
+
+## Figma Design
+
+Editable design file: https://www.figma.com/design/ADPmzexLc7RJZG8XD6QLKI
 
 ## Supabase Setup
 
