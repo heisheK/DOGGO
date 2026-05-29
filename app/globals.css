@@ -52,6 +52,10 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.22);
+  }
 }
 
 @layer components {
@@ -68,5 +72,13 @@
 
   .glass-line {
     @apply border border-white/50 bg-white/70 shadow-soft backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
+  }
+
+  .touch-scroll {
+    scrollbar-width: none;
+  }
+
+  .touch-scroll::-webkit-scrollbar {
+    display: none;
   }
 }
