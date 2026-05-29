@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ClipboardCheck, Heart, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Heart, HeartPulse, MapPin, Sparkles, UsersRound } from "lucide-react";
+import Image from "next/image";
 import { AnimalGrid } from "@/components/animals/animal-grid";
 import { CampusMap } from "@/components/animals/campus-map";
 import { Button } from "@/components/ui/button";
@@ -14,20 +15,26 @@ const rescueSteps: Array<[LucideIcon, string, string]> = [
   [Sparkles, "Share", "AI helps create humane profile copy for public adoption posts."]
 ];
 
+const impactStats: Array<[LucideIcon, string, string]> = [
+  [HeartPulse, "42", "rescues"],
+  [UsersRound, "18", "adoptions"],
+  [ClipboardCheck, "31", "medical files"]
+];
+
 export default async function HomePage() {
   const animals = await getAnimals();
 
   return (
     <main>
-      <section className="soft-band">
+      <section className="soft-band overflow-hidden">
         <div className="page-shell grid min-h-[calc(100vh-4rem)] items-center gap-10 py-10 lg:grid-cols-[1.02fr_.98fr]">
           <div className="max-w-2xl">
-            <Badge className="mb-5 bg-background/70">Campus rescue, adoption, and care records</Badge>
+            <Badge className="mb-5 bg-background/70">Campus rescue, adoption, care records, and AI stories</Badge>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">
-              A gentler way to protect campus strays.
+              A warmer rescue system for every campus stray.
             </h1>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Public animal profiles, rescue workflow tracking, medical records, and adoption applications in one warm community platform.
+              DOGGO turns sightings, treatment, foster care, and adoption into one calm workflow that students and volunteers can trust.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="default">
@@ -43,22 +50,40 @@ export default async function HomePage() {
                 </Link>
               </Button>
             </div>
-          </div>
-          <div className="grid gap-4">
-            <div className="glass-line rounded-lg p-4">
-              <AnimalGrid animals={animals.slice(0, 2)} />
-            </div>
-            <div className="grid grid-cols-3 gap-3 text-center">
-              {[
-                ["42", "rescues"],
-                ["18", "adoptions"],
-                ["31", "medical files"]
-              ].map(([value, label]) => (
-                <div key={label} className="rounded-lg border bg-background/75 p-4">
-                  <p className="text-2xl font-semibold">{value}</p>
-                  <p className="text-xs text-muted-foreground">{label}</p>
+            <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
+              {impactStats.map(([Icon, value, label]) => (
+                <div key={String(label)} className="rounded-lg border bg-background/72 p-3 backdrop-blur">
+                  <Icon className="h-4 w-4 text-primary" />
+                  <p className="mt-2 text-2xl font-semibold">{String(value)}</p>
+                  <p className="text-xs text-muted-foreground">{String(label)}</p>
                 </div>
               ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="glass-line rounded-lg p-3">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-md">
+                <Image
+                  src={animals[0]?.cover_image_url ?? "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1200&auto=format&fit=crop"}
+                  alt={animals[0]?.name ?? "Campus rescue animal"}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/55 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/20 bg-white/82 p-4 text-stone-900 backdrop-blur-xl dark:bg-stone-950/78 dark:text-stone-50">
+                  <Badge className="border-primary/30 bg-primary/10 text-primary">Today&apos;s profile</Badge>
+                  <h2 className="mt-3 text-2xl font-semibold">{animals[0]?.name ?? "Miso"}</h2>
+                  <p className="mt-2 line-clamp-2 text-sm text-stone-600 dark:text-stone-300">
+                    {animals[0]?.ai_description ?? "A gentle campus companion waiting for a safe home."}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="absolute -right-3 -top-4 hidden w-56 rounded-lg border bg-background/90 p-4 shadow-soft backdrop-blur lg:block">
+              <p className="text-sm font-medium">Next action</p>
+              <p className="mt-1 text-xs text-muted-foreground">Review adoption application and schedule home visit.</p>
             </div>
           </div>
         </div>
