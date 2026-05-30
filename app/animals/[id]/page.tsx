@@ -5,6 +5,15 @@ import { CalendarDays, MapPin, ShieldCheck, Syringe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAnimal } from "@/lib/data";
+import { animals } from "@/lib/mock-data";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return animals.map((animal) => ({
+    id: animal.id
+  }));
+}
 
 export default async function AnimalDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
