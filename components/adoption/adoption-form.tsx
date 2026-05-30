@@ -10,6 +10,7 @@ import type { Animal } from "@/lib/types/database";
 
 export function AdoptionForm({ animals, selectedAnimalId }: { animals: Animal[]; selectedAnimalId?: string }) {
   const [animalId, setAnimalId] = useState(selectedAnimalId ?? animals[0]?.id ?? "");
+  const [submitted, setSubmitted] = useState(false);
   const selectedAnimal = animals.find((animal) => animal.id === animalId);
 
   return (
@@ -29,7 +30,18 @@ export function AdoptionForm({ animals, selectedAnimalId }: { animals: Animal[];
           <p className="mt-1 text-xs text-muted-foreground">{selectedAnimal.ai_description ?? selectedAnimal.story}</p>
         </div>
       )}
-      <form className="mt-5 space-y-4" action="/api/adoptions" method="post">
+      {submitted && (
+        <div className="mt-5 rounded-md border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-200">
+          Demo submitted. In production this will create a Supabase adoption application.
+        </div>
+      )}
+      <form
+        className="mt-5 space-y-4"
+        onSubmit={(event) => {
+          event.preventDefault();
+          setSubmitted(true);
+        }}
+      >
         <div className="space-y-2">
           <Label htmlFor="animal_id">Animal</Label>
           <select
