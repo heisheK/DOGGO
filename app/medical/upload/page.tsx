@@ -1,8 +1,5 @@
 import { UploadCloud } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { MedicalUploadForm } from "@/components/medical/medical-upload-form";
 
 export default function MedicalUploadPage() {
   return (
@@ -20,35 +17,7 @@ export default function MedicalUploadPage() {
           </p>
         </div>
       </section>
-      <form className="rounded-lg border bg-card p-5 shadow-sm" action="/api/medical-records" method="post">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="animal_id">Animal ID</Label>
-            <Input id="animal_id" name="animal_id" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="record_type">Record type</Label>
-            <Input id="record_type" name="record_type" placeholder="vaccine" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="hospital">Hospital</Label>
-            <Input id="hospital" name="hospital" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="performed_at">Date</Label>
-            <Input id="performed_at" name="performed_at" type="date" required />
-          </div>
-        </div>
-        <div className="mt-4 space-y-2">
-          <Label htmlFor="attachment_url">Attachment URL</Label>
-          <Input id="attachment_url" name="attachment_url" placeholder="Supabase Storage public URL" />
-        </div>
-        <div className="mt-4 space-y-2">
-          <Label htmlFor="notes">Notes</Label>
-          <Textarea id="notes" name="notes" />
-        </div>
-        <Button className="mt-5 w-full">Save medical record</Button>
-      </form>
+      <MedicalUploadForm />
     </main>
   );
 }
