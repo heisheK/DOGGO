@@ -55,6 +55,16 @@ supabase/
 
 Editable design file: https://www.figma.com/design/ADPmzexLc7RJZG8XD6QLKI
 
+## Shareable Website
+
+GitHub Pages URL after deployment:
+
+```txt
+https://heishek.github.io/DOGGO/
+```
+
+If the URL is not live yet, open the repository Settings, go to Pages, and set Source to GitHub Actions. The included workflow builds the static site from `main` and publishes the `out` folder.
+
 ## Supabase Setup
 
 1. Create a Supabase project.
